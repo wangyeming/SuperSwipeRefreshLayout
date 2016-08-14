@@ -91,8 +91,8 @@ xml:
 
 关闭本次下拉刷新/上拉加载：
 
-    vSuperSwipeRefreshLayout.onRefresh(boolean isRefresh);
-    vSuperSwipeRefreshLayout.onLoadMore(boolean isLoadMore);
+    vSuperSwipeRefreshLayout.setRefreshing(boolean isRefresh);
+    vSuperSwipeRefreshLayout.setLoadMore(boolean isLoadMore);
 
 
 
