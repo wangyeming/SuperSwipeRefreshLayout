@@ -37,9 +37,6 @@ public class DefaultSwipeLayout extends SuperSwipeRefreshLayout implements
 
         setOnPullRefreshListener(this);
         setOnPushLoadMoreListener(this);
-
-        //设置上拉高度不超过footer的高度
-//        setEnablePushOverFooterHeight(false);
     }
 
     public void setOnRefreshListener(OnRefreshListener onRefreshListener) {
@@ -77,8 +74,8 @@ public class DefaultSwipeLayout extends SuperSwipeRefreshLayout implements
     }
 
     @Override
-    public void onPushDistance(int distance) {
-        vFooter.onDrag(distance);
+    public void onPushDistance(float percent) {
+        vFooter.onDrag(percent);
     }
 
     @Override

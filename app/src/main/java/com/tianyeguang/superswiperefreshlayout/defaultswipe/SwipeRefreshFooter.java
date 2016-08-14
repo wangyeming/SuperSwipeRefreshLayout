@@ -9,5 +9,5 @@ public interface SwipeRefreshFooter {
 
     void onLoadMore(boolean isLoadMore);
 
-    void onDrag(int distance);
+    void onDrag(float percent);
 }

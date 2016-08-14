@@ -56,8 +56,12 @@ public class CustomSwipeFooter extends FrameLayout implements SwipeRefreshFooter
     }
 
     @Override
-    public void onDrag(int distance) {
-        vDesc.setText("继续上拉 " + distance);
+    public void onDrag(float percent) {
+        if(percent < 1) {
+            vDesc.setText("↑继续上拉 ");
+        } else {
+            vDesc.setText("↓松手释放，上拉加载");
+        }
     }
 
     @Override

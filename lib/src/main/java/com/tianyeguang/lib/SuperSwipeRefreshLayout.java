@@ -69,7 +69,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
     private boolean mRefreshing = false;                    //当前是否在刷新
     private boolean mLoadMore = false;                      //当前是否在加载
     private int mTouchSlop;                                 //最小滑动距离，当手指移动距离大于该值时，才开始处理滑动
-    private float mTotalDragDistance = -1;                  //触发下拉刷新或上拉加载的滑动临界值 // TODO: 16-7-7 考虑拆分上拉和下拉
+    private float mTotalPushDragDistance = -1;              //触发下拉刷新的滑动临界值
     private int mCurrentTargetOffsetTop;                    //当前child距离顶部的偏离值
     // Whether or not the starting offset has been determined.
     private boolean mOriginalOffsetCalculated = false;      //用于标示top距离是否初始化
@@ -101,6 +101,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
     private int mFooterViewHeight;
 
     private int mPushDistance = 0;
+    private float mTotalPullDragDistance = -1;              //触发上拉加载的滑动临界值
 
     private CircleProgressView defaultProgressView = null;
 
@@ -348,7 +349,8 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
         );
 
         mSpinnerFinalOffset = mHeadViewContainer.getMeasuredHeight();
-        mTotalDragDistance = mSpinnerFinalOffset;
+        mTotalPushDragDistance = mSpinnerFinalOffset;
+        mTotalPullDragDistance = mFooterViewContainer.getMeasuredHeight();
 
         if (!mOriginalOffsetCalculated) {
             //如果没有初始化mOriginalOffsetTop的话
@@ -636,13 +638,6 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
         mPushEnable = enable;
     }
 
-    /**
-     * 设置是否允许上拉超过footer底部高度
-     */
-    public void setEnablePushOverFooterHeight(boolean enable) {
-        mIsAllowPushOverFooterHeight = enable;
-    }
-
     private boolean handlerPullTouchEvent(MotionEvent ev, int action) {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
@@ -660,7 +655,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
                 final float overscrollTop = (y - mInitialMotionY) * DRAG_RATE;      //当前下拉距离
                 if (mIsBeingDragged) {
-                    float originalDragPercent = overscrollTop / mTotalDragDistance; // 下拉百分比
+                    float originalDragPercent = overscrollTop / mTotalPushDragDistance; // 下拉百分比
                     if (originalDragPercent < 0) {
                         return false;
                     }
@@ -668,7 +663,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
                     if (mListener != null) {
                         mListener.onPull(dragPercent);
                     }
-                    float extraOS = Math.abs(overscrollTop) - mTotalDragDistance;       //距离触发下拉刷新还有多少距离
+                    float extraOS = Math.abs(overscrollTop) - mTotalPushDragDistance;       //距离触发下拉刷新还有多少距离
                     float slingshotDist = mSpinnerFinalOffset;                          //回弹开始的位置
                     //下面两行没看懂，貌似是计算
                     float tensionSlingshotPercent = Math.max(0, Math.min(extraOS, slingshotDist * 2) / slingshotDist);
@@ -703,7 +698,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
                 final float overscrollTop = (y - mInitialMotionY) * DRAG_RATE;
                 mIsBeingDragged = false;
-                if (overscrollTop > mTotalDragDistance) {
+                if (overscrollTop > mTotalPushDragDistance) {
                     setRefreshing(true, true /* notify */);
                 } else {
                     mRefreshing = false;
@@ -716,8 +711,6 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
 
         return true;
     }
-
-    protected boolean mIsAllowPushOverFooterHeight = true;  //允许上拉超过footer的高度
 
     /**
      * 处理上拉加载更多的Touch事件
@@ -736,18 +729,15 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
                 final float overscrollBottom = (mInitialMotionYWithPush - y) * DRAG_RATE;       //计算上拉的距离
                 if (mIsBeingDragged) {
-                    if (!mIsAllowPushOverFooterHeight) {
-                        //禁止上拉距离超过footer高度时
-                        if (overscrollBottom >= mFooterViewHeight) {
-                            if (mOnPushLoadMoreListener != null) {
-                                mOnPushLoadMoreListener.onPushEnable(mPushDistance >= mFooterViewHeight);
-                            }
-                            return true;
-                        }
+                    float originalDragPercent = overscrollBottom/mTotalPullDragDistance;    //上拉百分比
+                    if(originalDragPercent < 0) {
+                        return false;
                     }
+                    float dragPercent = Math.min(1f, Math.abs(originalDragPercent));    //最小1%
                     mPushDistance = (int) overscrollBottom;
                     updateFooterViewPosition();
                     if (mOnPushLoadMoreListener != null) {
+                        mOnPushLoadMoreListener.onPushDistance(dragPercent);
                         mOnPushLoadMoreListener.onPushEnable(mPushDistance >= mFooterViewHeight);
                     }
                 }
@@ -969,14 +959,8 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
             mFooterViewContainer.getParent().requestLayout();
         }
         mFooterViewContainer.offsetTopAndBottom(-mPushDistance);
-        updatePushDistanceListener();
     }
 
-    private void updatePushDistanceListener() {
-        if (mOnPushLoadMoreListener != null) {
-            mOnPushLoadMoreListener.onPushDistance(mPushDistance);
-        }
-    }
 
     private void onSecondaryPointerUp(MotionEvent ev) {
         final int pointerIndex = MotionEventCompat.getActionIndex(ev);
@@ -1037,7 +1021,7 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
     public interface OnPushLoadMoreListener {
         void onLoadMore();
 
-        void onPushDistance(int distance);
+        void onPushDistance(float percent);
 
         void onPushEnable(boolean enable);
     }

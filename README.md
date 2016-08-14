@@ -4,23 +4,12 @@
 
 做了大量的设计优化及Bug修复
 
-***
-
-作者：田野光(https://wangyeming.github.io/)
-
-欢迎捐赠：
-
-![支付宝](images/wangyeming_zhifubao.jpg)
-
-***
-
 ##特点：
 1. 无侵入性，用法类似官方的SwipeRefreshLayout
 2. 上拉加载的交互设计与下拉刷新的相同。
 3. 支持自定义header和footer
 4. 目前仅支持ListView RecyclerView ScrollView
 5. 支持禁用上拉和下拉
-6. 支持自定义开启上拉是否允许超过FooterView的高度
 
 ##相比原项目修复了哪些问题？
 1. 修复了判断ListView是否滑动到底部的标准异常
@@ -52,7 +41,7 @@
         public interface OnPushLoadMoreListener {
             void onLoadMore();
     
-            void onPushDistance(int distance);
+            void onPushDistance(float percent);
     
             void onPushEnable(boolean enable);
         }
@@ -60,8 +49,7 @@
 ##目前存在的问题：
 1. child不支持任意ViewGroup，导致对布局有很多限制(急需修复)
 2. 上拉过程中，child的布局高度异常，导致此时如果下拉到列表的顶部，会发现布局展示不完整
-3. 启用上拉不允许超过FooterView的高度后，某些情况下距离计算有点问题（后续可能会去掉该方法，没什么用，之前是为了解决设计的某种特殊需求）
-4. 上拉触发并松手后，似乎有一点不太正常的抖动，不明显
+3. 上拉触发并松手后，似乎有一点不太正常的抖动，不明显
 
 ##如何在项目中使用？
 >直接复制SuperSwipeRefreshLayout.java, 哈哈，简单省事，
@@ -90,10 +78,6 @@ xml:
     vSuperSwipeRefreshLayout.setHeaderView(vHeader);
     vSuperSwipeRefreshLayout.setFooterView(vFooter);
     
-设置上拉是否允许超过FooterView的高度：
-
-    vSuperSwipeRefreshLayout.setEnablePushOverFooterHeight(boolean isAllow);
-    
 启用或关闭下拉刷新/上拉加载：
 
     vSuperSwipeRefreshLayout.setOnPullEnable(boolean enableRefresh)
@@ -104,5 +88,15 @@ xml:
     vSuperSwipeRefreshLayout.setRefreshing(boolean isRefresh);
     vSuperSwipeRefreshLayout.setLoadMore(boolean isLoadMore);
 
+
+***
+
+作者：田野光(https://wangyeming.github.io/)
+
+欢迎捐赠：
+
+![支付宝](images/wangyeming_zhifubao.jpg)
+
+***
 
 
