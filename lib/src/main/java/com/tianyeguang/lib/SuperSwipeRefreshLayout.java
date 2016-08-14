@@ -1,4 +1,4 @@
-package com.tianyeguang.superswiperefreshlayout;
+package com.tianyeguang.lib;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
