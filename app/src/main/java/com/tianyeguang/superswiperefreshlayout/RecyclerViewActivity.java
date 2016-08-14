@@ -11,6 +11,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView Demo
+ *
+ * Created by wangyeming on 2016/8/15.
+ */
 public class RecyclerViewActivity extends BaseDemoActivity {
 
     private SimpleRecyclerAdapter mAdapter;

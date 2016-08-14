@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+/**
+ * 首页
+ *
+ * Created by wangyeming on 2016/8/15.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void routeToScrollerViewDemo(View view) {
-        Intent intent = new Intent(this, ScrollerViewActivity.class);
+        Intent intent = new Intent(this, ScrollViewActivity.class);
         startActivity(intent);
     }
 }

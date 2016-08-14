@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".RecyclerViewActivity">
         </activity>
-        <activity android:name=".ScrollerViewActivity">
+        <activity android:name=".ScrollViewActivity">
         </activity>
     </application>
 
