@@ -1,6 +1,7 @@
 ##SuperSwipeRefreshLayout
 
 同时支持下拉刷新和上拉加载的控件，fork自[nuptboyzhb/SuperSwipeRefreshLayout](https://github.com/nuptboyzhb/SuperSwipeRefreshLayout)
+
 做了大量的设计优化及Bug修复
 
 ##特点：
@@ -57,8 +58,8 @@
 
 ##贡献：
 非常欢迎，但是有一些希望能够注意的地方：
-1. pull request每次的commit颗粒度尽量小，只解决一个问题，这样被采纳的可能性更高
-2. 如果有比较大的改动，可以事先联系我，我们一起讨论方案~
+* pull request每次的commit颗粒度尽量小，只解决一个问题，这样被采纳的可能性更高
+* 如果有比较大的改动，可以事先联系我，我们一起讨论方案~
 
 ##用法：
 
