@@ -622,6 +622,27 @@ public class SuperSwipeRefreshLayout extends ViewGroup {
 
     protected boolean mPullEnable = true;   //允许下拉刷新
 
+    /**
+     * 设置是否允许下拉刷新
+     */
+    public void setOnPullEnable(boolean enable) {
+        mPullEnable = enable;
+    }
+
+    /**
+     * 设置是否允许上拉加载
+     */
+    public void setOnPushEnable(boolean enable) {
+        mPushEnable = enable;
+    }
+
+    /**
+     * 设置是否允许上拉超过footer底部高度
+     */
+    public void setEnablePushOverFooterHeight(boolean enable) {
+        mIsAllowPushOverFooterHeight = enable;
+    }
+
     private boolean handlerPullTouchEvent(MotionEvent ev, int action) {
         switch (action) {
             case MotionEvent.ACTION_DOWN:

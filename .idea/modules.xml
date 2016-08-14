@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SuperSwipeRefreshLayout.iml" filepath="$PROJECT_DIR$/SuperSwipeRefreshLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SuperSwipeRefreshLayout/superswiperefreshlayout.iml" filepath="$PROJECT_DIR$/SuperSwipeRefreshLayout/superswiperefreshlayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
     </modules>
   </component>
 </project>

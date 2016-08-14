@@ -1,1 +1,1 @@
-include ':app', ':superswiperefreshlayout'
+include ':app', ':lib'
