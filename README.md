@@ -4,6 +4,14 @@
 
 做了大量的设计优化及Bug修复
 
+***
+
+作者：田野光(https://wangyeming.github.io/)
+欢迎捐赠：
+![支付宝](images/wangyeming_zhifubao.jpg)
+
+***
+
 ##特点：
 1. 无侵入性，用法类似官方的SwipeRefreshLayout
 2. 上拉加载的交互设计与下拉刷新的相同。
