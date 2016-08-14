@@ -50,6 +50,8 @@ public class CustomSwipeFooter extends FrameLayout implements SwipeRefreshFooter
     public void onLoadMore(boolean isLoadMore) {
         if(isLoadMore) {
             vDesc.setText("上拉加载中");
+        } else {
+            vDesc.setText("加载完毕");
         }
     }
 

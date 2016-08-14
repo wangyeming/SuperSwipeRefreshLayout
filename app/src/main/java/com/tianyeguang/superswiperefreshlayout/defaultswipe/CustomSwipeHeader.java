@@ -49,6 +49,8 @@ public class CustomSwipeHeader extends FrameLayout implements SwipeRefreshHeader
     public void onRefresh(boolean isRefresh) {
         if(isRefresh) {
             vDesc.setText("刷新中");
+        } else {
+            vDesc.setText("刷新完毕");
         }
     }
 
