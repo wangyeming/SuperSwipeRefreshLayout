@@ -40,11 +40,6 @@ captures/
 # Intellij
 *.iml
 .idea/
-.idea/libraries
 
 # Keystore files
 *.jks
-app/libs/
-app/src/main/res/drawable/
-lib/libs/
-lib/src/main/res/drawable/

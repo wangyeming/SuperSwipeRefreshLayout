@@ -17,6 +17,8 @@
 推荐另外一个我的上拉开源项目[wangyeming/LoadMoreRecyclerViewAdapter](https://github.com/wangyeming/LoadMoreRecyclerViewAdapter), 
 两者实现方式和效果都截然不同，确定方案前不妨先考虑下哪种上拉更符合需求~
 
+[我的博文--Android 上拉加载的简单实现](https://wangyeming.github.io/pull-load-more/)
+
 ***
 
 ![demo](images/demo.gif)
