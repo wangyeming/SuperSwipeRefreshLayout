@@ -1,8 +1,21 @@
 ##SuperSwipeRefreshLayout
 
+***
+
+作者：田野光(https://wangyeming.github.io/)
+
+欢迎捐赠：
+
+![支付宝](images/wangyeming_zhifubao.jpg)
+
+***
+
 同时支持下拉刷新和上拉加载的控件，fork自[nuptboyzhb/SuperSwipeRefreshLayout](https://github.com/nuptboyzhb/SuperSwipeRefreshLayout)
 
 做了大量的设计优化及Bug修复
+
+推荐另外一个我的上拉开源项目[wangyeming/LoadMoreRecyclerViewAdapter](https://github.com/wangyeming/LoadMoreRecyclerViewAdapter), 
+两者实现方式和效果都截然不同，确定方案前不妨先考虑下哪种上拉更符合需求~
 
 ***
 
@@ -94,15 +107,5 @@ xml:
     vSuperSwipeRefreshLayout.setRefreshing(boolean isRefresh);
     vSuperSwipeRefreshLayout.setLoadMore(boolean isLoadMore);
 
-
-***
-
-作者：田野光(https://wangyeming.github.io/)
-
-欢迎捐赠：
-
-![支付宝](images/wangyeming_zhifubao.jpg)
-
-***
 
 
